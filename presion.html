@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Internacional de Medidas - Presión</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Sistema internacional de medidas</h1>
+        <nav>
+            <a href="home.html">Home</a> |
+            <a href="masa.html">Masa</a> |
+            <a href="volumen.html">Volumen</a> |
+            <a href="distancia.html">Distancia</a> | 
+            <a href="densidad.html">Densidad</a> |
+            <a href="presion.html">Presión</a> |
+            <a href="tiempo.html">Tiempo</a> |
+            <a href="fuerza.html">Fuerza</a> |
+            <a href="energia.html">Energía</a> |
+        </nav>
+   </header>
+    <h1>Sistema Internacional de Medidas - Presión</h1>
+   
+    <div class="converter">
+        <p>Introduce el valor y selecciona la unidad de medida:</p>
+        <input type="number" id="inputValue" placeholder="Introduce el valor">
+        <select id="inputUnit">
+            <option value="mmHg">Milímetros de Mercurio (mmHg)</option>
+            <option value="atm">Atmósferas (Atm)</option>
+            <option value="pa">Pascales (Pa)</option>
+            <option value="psi">Libras por pulgada cuadrada (psi)</option>
+            <option value="torr">Torr</option>
+        </select>
+        <button onclick="convert()">Convertir</button>
+        <h3>Resultado:</h3>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function convert() {
+    let value = parseFloat(document.getElementById('inputValue').value);
+    let unit = document.getElementById('inputUnit').value;
+    let result;
+
+    // Función para formatear números grandes o pequeños de forma precisa
+    function formatNumber(num) {
+        if (Math.abs(num) >= 1e6 || Math.abs(num) < 1e-3) {
+            return num.toExponential(3); // Notación científica con 3 dígitos significativos
+        } else {
+            return num.toPrecision(6); // Usar hasta 6 dígitos significativos si no se requiere notación científica
+        }
+    }
+
+    switch(unit) {
+        case 'mmHg':
+            result = `Atmósferas: ${formatNumber(value / 760)} Atm<br>
+                      Pascales: ${formatNumber(value * 133.322)} Pa<br>
+                      Libras por pulgada cuadrada: ${formatNumber(value / 51.715)} psi<br>
+                      Torr: ${formatNumber(value)} Torr`;
+            break;
+        case 'atm':
+            result = `Milímetros de Mercurio: ${formatNumber(value * 760)} mmHg<br>
+                      Pascales: ${formatNumber(value * 101325)} Pa<br>
+                      Libras por pulgada cuadrada: ${formatNumber(value * 14.696)} psi<br>
+                      Torr: ${formatNumber(value * 760)} Torr`;
+            break;
+        case 'pa':
+            result = `Milímetros de Mercurio: ${formatNumber(value / 133.322)} mmHg<br>
+                      Atmósferas: ${formatNumber(value / 101325)} Atm<br>
+                      Libras por pulgada cuadrada: ${formatNumber(value / 6894.757)} psi<br>
+                      Torr: ${formatNumber(value / 133.322)} Torr`;
+            break;
+        case 'psi':
+            result = `Milímetros de Mercurio: ${formatNumber(value * 51.715)} mmHg<br>
+                      Atmósferas: ${formatNumber(value / 14.696)} Atm<br>
+                      Pascales: ${formatNumber(value * 6894.757)} Pa<br>
+                      Torr: ${formatNumber(value * 51.715)} Torr`;
+            break;
+        case 'torr':
+            result = `Milímetros de Mercurio: ${formatNumber(value)} mmHg<br>
+                      Atmósferas: ${formatNumber(value / 760)} Atm<br>
+                      Pascales: ${formatNumber(value * 133.322)} Pa<br>
+                      Libras por pulgada cuadrada: ${formatNumber(value / 51.715)} psi`;
+            break;
+    }
+
+    document.getElementById('result').innerHTML = result;
+}
+
+    </script>
+</body>
+</html>

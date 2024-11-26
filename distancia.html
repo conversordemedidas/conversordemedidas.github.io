@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Internacional de Medidas - Distancia</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Sistema internacional de medidas</h1>
+        <nav>
+            <a href="home.html">Home</a> |
+            <a href="masa.html">Masa</a> |
+            <a href="volumen.html">Volumen</a> |
+            <a href="distancia.html">Distancia</a> | 
+            <a href="densidad.html">Densidad</a> |
+            <a href="presion.html">Presión</a> |
+            <a href="tiempo.html">Tiempo</a> |
+            <a href="fuerza.html">Fuerza</a> |
+            <a href="energia.html">Energía</a> |
+        </nav>
+   </header>
+    <h1>Sistema Internacional de Medidas - Distancia</h1>
+    
+    <div class="converter">
+        <p>Introduce el valor y selecciona la unidad de medida:</p>
+        <input type="number" id="inputValue" placeholder="Introduce el valor">
+        <select id="inputUnit">
+            <option value="yarda">Yardas (yd)</option>
+            <option value="pulgada">Pulgadas (in)</option>
+            <option value="m">Metros (m)</option>
+            <option value="cm">Centímetros (cm)</option>
+            <option value="km">Kilómetros (km)</option>
+            <option value="mm">Milímetros (mm)</option>
+        </select>
+        <button onclick="convert()">Convertir</button>
+        <h3>Resultado:</h3>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function convert() {
+            let value = parseFloat(document.getElementById('inputValue').value);
+            let unit = document.getElementById('inputUnit').value;
+            let result;
+
+            // Función para formatear números grandes o pequeños de forma precisa
+    function formatNumber(num) {
+        if (Math.abs(num) >= 1e6 || Math.abs(num) < 1e-3) {
+            return num.toExponential(3); // Notación científica con 3 dígitos significativos
+        } else {
+            return num.toPrecision(6); // Usar hasta 6 dígitos significativos si no se requiere notación científica
+        }
+    }
+
+    switch(unit) {
+        case 'yarda':
+            result = `Pulgadas: ${formatNumber(value * 36)} in<br>
+                      Metros: ${formatNumber(value * 0.9144)} m<br>
+                      Centímetros: ${formatNumber(value * 91.44)} cm<br>
+                      Kilómetros: ${formatNumber(value * 0.0009144)} km<br>
+                      Milímetros: ${formatNumber(value * 914.4)} mm`;
+            break;
+        case 'pulgada':
+            result = `Yardas: ${formatNumber(value / 36)} yd<br>
+                      Metros: ${formatNumber(value * 0.0254)} m<br>
+                      Centímetros: ${formatNumber(value * 2.54)} cm<br>
+                      Kilómetros: ${formatNumber(value * 0.0000254)} km<br>
+                      Milímetros: ${formatNumber(value * 25.4)} mm`;
+            break;
+        case 'm':
+            result = `Yardas: ${formatNumber(value * 1.09361)} yd<br>
+                      Pulgadas: ${formatNumber(value * 39.3701)} in<br>
+                      Centímetros: ${formatNumber(value * 100)} cm<br>
+                      Kilómetros: ${formatNumber(value * 0.001)} km<br>
+                      Milímetros: ${formatNumber(value * 1000)} mm`;
+            break;
+        case 'cm':
+            result = `Yardas: ${formatNumber(value * 0.0109361)} yd<br>
+                      Pulgadas: ${formatNumber(value * 0.393701)} in<br>
+                      Metros: ${formatNumber(value * 0.01)} m<br>
+                      Kilómetros: ${formatNumber(value * 0.00001)} km<br>
+                      Milímetros: ${formatNumber(value * 10)} mm`;
+            break;
+        case 'km':
+            result = `Yardas: ${formatNumber(value * 1093.61)} yd<br>
+                      Pulgadas: ${formatNumber(value * 39370.1)} in<br>
+                      Metros: ${formatNumber(value * 1000)} m<br>
+                      Centímetros: ${formatNumber(value * 100000)} cm<br>
+                      Milímetros: ${formatNumber(value * 1000000)} mm`;
+            break;
+        case 'mm':
+            result = `Yardas: ${formatNumber(value * 0.00109361)} yd<br>
+                      Pulgadas: ${formatNumber(value * 0.0393701)} in<br>
+                      Metros: ${formatNumber(value * 0.001)} m<br>
+                      Centímetros: ${formatNumber(value * 0.1)} cm<br>
+                      Kilómetros: ${formatNumber(value * 0.000001)} km`;
+            break;
+    }
+
+    document.getElementById('result').innerHTML = result;
+}
+    </script>
+</body>
+</html>

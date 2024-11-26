@@ -1,0 +1,124 @@
+/* Estilos generales */
+body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: #0d128c;
+    color: #333;
+    background-image: url('imagen.jpg'); /* Cambia por la URL de tu imagen */
+    background-size: cover;
+    background-position: center;
+    overflow: hidden; /* Elimina el scroll */
+    height: 100vh; /* Asegura que ocupe todo el alto de la ventana */
+}
+
+/* Contenedor general */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Estilos de navegación */
+nav {
+    margin-bottom: 20px;
+}
+
+nav a {
+    padding: 12px 25px;
+    margin: 0 15px;
+    text-decoration: none;
+    color: white;
+    background-color: #343a40; /* Color gris oscuro armonioso */
+    border-radius: 25px;
+    transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+    background-color: #495057; /* Cambio suave al pasar el ratón */
+}
+
+/* Estilos de títulos */
+h1 {
+    font-size: 2.8em;
+    color: #f8f9fa; /* Color claro para destacar sobre el fondo */
+    margin-bottom: 20px;
+}
+
+/* Estilos del bloque de conversión */
+.converter {
+    margin: 0 auto;
+    padding: 20px;
+    width: 100%;
+    max-width: 350px; /* Limitar el ancho máximo para mayor claridad */
+    background-color: #fff; /* Fondo blanco para el bloque de conversión */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos de campos de entrada y selección */
+input[type="number"],
+select {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* Botón de conversión */
+button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+/* Media queries para hacer la página responsiva */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.2em;
+    }
+
+    .converter {
+        width: 95%;
+        padding: 15px;
+    }
+
+    nav a {
+        margin: 5px;
+        padding: 10px 20px;
+    }
+}
+
+/* Sección de descripción */
+.description {
+    max-width: 700px;
+    margin: 20px auto;
+    padding: 25px;
+    background-color: rgba(255, 255, 255, 0.85); /* Blanco semitransparente */
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.description h1 {
+    color: #343a40; /* Gris oscuro para el título */
+}
+
+.description p {
+    font-size: 1.2em;
+    color: #495057; /* Gris medio armonioso */
+    line-height: 1.8;
+}
+

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Internacional de Medidas - Densidad</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Sistema internacional de medidas</h1>
+        <nav>
+            <a href="home.html">Home</a> |
+            <a href="masa.html">Masa</a> |
+            <a href="volumen.html">Volumen</a> |
+            <a href="distancia.html">Distancia</a> | 
+            <a href="densidad.html">Densidad</a> |
+            <a href="presion.html">Presión</a> |
+            <a href="tiempo.html">Tiempo</a> |
+            <a href="fuerza.html">Fuerza</a> |
+            <a href="energia.html">Energía</a> |
+        </nav>
+   </header>
+    <h1>Sistema Internacional de Medidas - Densidad</h1>
+    
+    <div class="converter">
+        <p>Introduce el valor y selecciona la unidad de medida:</p>
+        <input type="number" id="inputValue" placeholder="Introduce el valor">
+        <select id="inputUnit">
+            <option value="kg/m3">Kilogramos por metro cúbico (kg/m³)</option>
+            <option value="g/ml">Gramos por mililitro (g/mL)</option>
+            <option value="kg/l">Kilogramos por litro (kg/L)</option>
+            <option value="g/l">Gramos por litro (g/L)</option>
+        </select>
+        <button onclick="convert()">Convertir</button>
+        <h3>Resultado:</h3>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function convert() {
+            let value = parseFloat(document.getElementById('inputValue').value);
+            let unit = document.getElementById('inputUnit').value;
+            let result;
+        }
+            function convert() {
+    let value = parseFloat(document.getElementById('inputValue').value);
+    let unit = document.getElementById('inputUnit').value;
+    let result;
+
+    // Función para formatear números grandes o pequeños de forma precisa
+    function formatNumber(num) {
+        if (Math.abs(num) >= 1e6 || Math.abs(num) < 1e-3) {
+            return num.toExponential(3); // Notación científica con 3 dígitos significativos
+        } else {
+            return num.toPrecision(6); // Usar hasta 6 dígitos significativos si no se requiere notación científica
+        }
+    }
+
+    switch(unit) {
+        case 'kg/m3':
+            result = `Gramos por mililitro: ${formatNumber(value / 1000)} g/mL<br>
+                      Kilogramos por litro: ${formatNumber(value / 1000)} kg/L<br>
+                      Gramos por litro: ${formatNumber(value)} g/L`;
+            break;
+        case 'g/ml':
+            result = `Kilogramos por metro cúbico: ${formatNumber(value * 1000)} kg/m³<br>
+                      Kilogramos por litro: ${formatNumber(value)} kg/L<br>
+                      Gramos por litro: ${formatNumber(value * 1000)} g/L`;
+            break;
+        case 'kg/l':
+            result = `Kilogramos por metro cúbico: ${formatNumber(value * 1000)} kg/m³<br>
+                      Gramos por mililitro: ${formatNumber(value)} g/mL<br>
+                      Gramos por litro: ${formatNumber(value * 1000)} g/L`;
+            break;
+        case 'g/l':
+            result = `Kilogramos por metro cúbico: ${formatNumber(value)} kg/m³<br>
+                      Gramos por mililitro: ${formatNumber(value / 1000)} g/mL<br>
+                      Kilogramos por litro: ${formatNumber(value / 1000)} kg/L`;
+            break;
+    }
+
+    document.getElementById('result').innerHTML = result;
+}
+
+    </script>
+</body>
+</html>

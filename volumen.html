@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Internacional de Medidas - Volumen</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Sistema internacional de medidas</h1>
+        <nav>
+            <a href="home.html">Home</a> |
+            <a href="masa.html">Masa</a> |
+            <a href="volumen.html">Volumen</a> |
+            <a href="distancia.html">Distancia</a> | 
+            <a href="densidad.html">Densidad</a> |
+            <a href="presion.html">Presión</a> |
+            <a href="tiempo.html">Tiempo</a> |
+            <a href="fuerza.html">Fuerza</a> |
+            <a href="energia.html">Energía</a> |
+        </nav>
+   </header>
+    <h1>Sistema Internacional de Medidas - Volumen</h1>
+    
+    <div class="converter">
+        <p>Introduce el valor y selecciona la unidad de medida:</p>
+        <input type="number" id="inputValue" placeholder="Introduce el valor">
+        <select id="inputUnit">
+            <option value="gal">Galones (Gal)</option>
+            <option value="m3">Metros cúbicos (m³)</option>
+            <option value="l">Litros (L)</option>
+            <option value="ml">Mililitros (mL)</option>
+            <option value="ul">Microlitros (µL)</option>
+        </select>
+        <button onclick="convert()">Convertir</button>
+        <h3>Resultado:</h3>
+        <p id="result"></p>
+    </div>
+</body>
+    <script>
+        function convert() {
+    let value = parseFloat(document.getElementById('inputValue').value);
+    let unit = document.getElementById('inputUnit').value;
+    let result;
+
+    // Función para formatear números grandes o pequeños de forma precisa
+    function formatNumber(num) {
+        if (Math.abs(num) >= 1e6 || Math.abs(num) < 1e-3) {
+            return num.toExponential(3); // Notación científica con 3 dígitos significativos
+        } else {
+            return num.toPrecision(6); // Usar hasta 6 dígitos significativos si no se requiere notación científica
+        }
+    }
+
+    switch(unit) {
+        case 'gal':
+            result = `Metros cúbicos: ${formatNumber(value * 0.00378541)} m³<br>
+                      Litros: ${formatNumber(value * 3.78541)} L<br>
+                      Mililitros: ${formatNumber(value * 3785.41)} mL<br>
+                      Microlitros: ${formatNumber(value * 3785410)} µL`;
+            break;
+        case 'm3':
+            result = `Galones: ${formatNumber(value * 264.172)} Gal<br>
+                      Litros: ${formatNumber(value * 1000)} L<br>
+                      Mililitros: ${formatNumber(value * 1000000)} mL<br>
+                      Microlitros: ${formatNumber(value * 1000000000)} µL`;
+            break;
+        case 'l':
+            result = `Galones: ${formatNumber(value * 0.264172)} Gal<br>
+                      Metros cúbicos: ${formatNumber(value * 0.001)} m³<br>
+                      Mililitros: ${formatNumber(value * 1000)} mL<br>
+                      Microlitros: ${formatNumber(value * 1000000)} µL`;
+            break;
+        case 'ml':
+            result = `Galones: ${formatNumber(value * 0.000264172)} Gal<br>
+                      Metros cúbicos: ${formatNumber(value * 0.000001)} m³<br>
+                      Litros: ${formatNumber(value * 0.001)} L<br>
+                      Microlitros: ${formatNumber(value * 1000)} µL`;
+            break;
+        case 'ul':
+            result = `Galones: ${formatNumber(value * 0.000000264172)} Gal<br>
+                      Metros cúbicos: ${formatNumber(value * 0.000000001)} m³<br>
+                      Litros: ${formatNumber(value * 0.000001)} L<br>
+                      Mililitros: ${formatNumber(value * 0.001)} mL`;
+            break;
+    }
+
+    document.getElementById('result').innerHTML = result;
+}
+
+    </script>
+</html>

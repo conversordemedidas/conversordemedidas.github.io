@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Internacional de Medidas - Masa</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Sistema internacional de medidas</h1>
+        <nav>
+            <a href="home.html">Home</a> |
+            <a href="masa.html">Masa</a> |
+            <a href="volumen.html">Volumen</a> |
+            <a href="distancia.html">Distancia</a> | 
+            <a href="densidad.html">Densidad</a> |
+            <a href="presion.html">Presión</a> |
+            <a href="tiempo.html">Tiempo</a> |
+            <a href="fuerza.html">Fuerza</a> |
+            <a href="energia.html">Energía</a> |
+        </nav>
+   </header>
+    <h1>Sistema Internacional de Medidas - Masa</h1>
+    
+    <div class="converter">
+        <p>Introduce el valor y selecciona la unidad de medida:</p>
+        <input type="number" id="inputValue" placeholder="Introduce el valor">
+        <select id="inputUnit">
+            <option value="ton">Toneladas (ton)</option>
+            <option value="kg">Kilogramos (kg)</option>
+            <option value="g">Gramos (g)</option>
+            <option value="mg">Miligramos (mg)</option>
+            <option value="ug">Microgramos (µg)</option>
+        </select>
+        <button onclick="convert()">Convertir</button>
+        <h3>Resultado:</h3>
+        <p id="result"></p>
+    </div>
+</body>
+    <script>
+        function convert() {
+    let value = parseFloat(document.getElementById('inputValue').value);
+    let unit = document.getElementById('inputUnit').value;
+    let result;
+
+    // Función para formatear números grandes o pequeños de forma precisa
+    function formatNumber(num) {
+        if (Math.abs(num) >= 1e6 || Math.abs(num) < 1e-3) {
+            return num.toExponential(3); // Notación científica con 3 dígitos significativos
+        } else {
+            return num.toPrecision(6); // Usar hasta 6 dígitos significativos si no se requiere notación científica
+        }
+    }
+
+    switch(unit) {
+        case 'ton':
+            result = `Kilogramos: ${formatNumber(value * 1000)} kg<br>
+                      Gramos: ${formatNumber(value * 1000000)} g<br>
+                      Miligramos: ${formatNumber(value * 1000000000)} mg<br>
+                      Microgramos: ${formatNumber(value * 1000000000000)} µg`;
+            break;
+        case 'kg':
+            result = `Toneladas: ${formatNumber(value / 1000)} ton<br>
+                      Gramos: ${formatNumber(value * 1000)} g<br>
+                      Miligramos: ${formatNumber(value * 1000000)} mg<br>
+                      Microgramos: ${formatNumber(value * 1000000000)} µg`;
+            break;
+        case 'g':
+            result = `Toneladas: ${formatNumber(value / 1000000)} ton<br>
+                      Kilogramos: ${formatNumber(value / 1000)} kg<br>
+                      Miligramos: ${formatNumber(value * 1000)} mg<br>
+                      Microgramos: ${formatNumber(value * 1000000)} µg`;
+            break;
+        case 'mg':
+            result = `Toneladas: ${formatNumber(value / 1000000000)} ton<br>
+                      Kilogramos: ${formatNumber(value / 1000000)} kg<br>
+                      Gramos: ${formatNumber(value / 1000)} g<br>
+                      Microgramos: ${formatNumber(value * 1000)} µg`;
+            break;
+        case 'ug':
+            result = `Toneladas: ${formatNumber(value / 1000000000000)} ton<br>
+                      Kilogramos: ${formatNumber(value / 1000000000)} kg<br>
+                      Gramos: ${formatNumber(value / 1000000)} g<br>
+                      Miligramos: ${formatNumber(value / 1000)} mg`;
+            break;
+    }
+
+    document.getElementById('result').innerHTML = result;
+}
+
+    </script>
+</html>
